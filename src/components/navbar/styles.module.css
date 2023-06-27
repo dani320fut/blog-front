@@ -1,0 +1,62 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 50px;
+}
+
+.titleContainer {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.title {
+  color: rgb(0, 0, 0);
+  font-weight: 550;
+  text-decoration: none;
+}
+
+.logo {
+  display: flex;
+  margin-left: -10px;
+}
+
+.searchContainer {
+  margin-top: 5px;
+  display: block;
+}
+
+.searchInput {
+  height: 20px;
+  width: 250px;
+  margin-right: -10px;
+  padding-right: 30px;
+  outline: none;
+
+  &::-webkit-input-placeholder {
+    padding-left: 5px;
+  }
+
+  &:focus {
+    border: 1px solid #000000;
+    transition: 0.35s ease;
+
+    &::-webkit-input-placeholder {
+      transition: opacity 0.45s ease;
+      opacity: 0;
+    }
+  }
+}
+
+.buttonSearch {
+  position: relative;
+  float: right;
+  left: -16px;
+}
+
+@media (max-width: 525px) {
+  .searchInput {
+    width: 100px;
+  }
+}

@@ -1,0 +1,16 @@
+.tagsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.tags {
+  display: flex;
+  padding: 4px 15px 4px 15px;
+  border: solid 1px;
+  border-radius: 15px;
+}
+
+.text {
+  margin-top: -2px;
+}

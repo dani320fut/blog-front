@@ -1,0 +1,49 @@
+.titleContainer {
+  display: flex;
+  flex-direction: column;
+  /* gap: 10px; */
+  padding: 10px 0 30px 0;
+}
+
+.title {
+  font-size: 36px;
+  text-align: center;
+}
+
+.subtitle {
+  font-size: 20px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.img {
+  pointer-events: none !important;
+  padding-bottom: 20px;
+}
+
+.articleBody {
+  display: flex;
+  flex-direction: column;
+}
+
+.articleBody h2 {
+  color: #363636;
+}
+
+.description {
+  font-size: 16px;
+  line-height: 1.8;
+  color: #4b4b4b;
+  text-align: justify;
+}
+
+@media (max-width: 500px) {
+  .articleBody h2 {
+    font-size: 22px;
+  }
+
+  .articleBody ul {
+    padding-right: 4px;
+    margin-left: -14px;
+  }
+}
