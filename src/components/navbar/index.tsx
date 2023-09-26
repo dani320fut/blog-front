@@ -1,59 +1,37 @@
+"use client";
 import React from "react";
 import styles from "./styles.module.css";
-import { Link, Outlet } from "react-router-dom";
+import Link from "next/link";
 import heartlogo from "../../assets/icons/heartlogo.png";
-import SvgSearch from "../../assets/icons/SvgSearch";
+import InputSearch from "../inputSearch";
+import { usePathname } from "next/navigation";
 
 const Navbar: React.FC = () => {
-  const [searchText, setSearchText] = React.useState<string>("");
-  const searchRef = React.createRef<HTMLAnchorElement>();
-
-  const handleKeypress = (e: any) => {
-    if (e.keyCode === 13) {
-      searchRef?.current?.click();
-    }
-  };
+  const pathname = usePathname();
+  const isSearchPage = pathname === "/articles";
 
   return (
     <>
       <nav className={styles.navbar}>
         <div className={styles.titleContainer}>
           <div>
-            <Link className={styles.logo} to="/">
-              <img src={heartlogo} width={40} />
+            <Link className={styles.logo} href="/">
+              <img src={heartlogo?.src} width={40} />
             </Link>
           </div>
-          <Link className={styles.title} to="/">
+          <Link className={styles.title} href="/">
             Home
           </Link>
-          <Link className={styles.title} to="/">
+          <Link className={styles.title} href="/articles">
             Articles
+          </Link>
+          <Link className={styles.title} href="/about-us">
+            About us
           </Link>
         </div>
 
-        <div className={styles.searchContainer}>
-          <input
-            className={styles.searchInput}
-            type="text"
-            placeholder="search"
-            onChange={(e) => setSearchText(e.target.value)}
-            onKeyUp={handleKeypress}
-          />
-          <div className={styles.buttonSearch}>
-            {/* colocar o texto na url */}
-            <Link
-              ref={searchRef}
-              className={styles.title}
-              to={`/articles?find=${searchText}`}
-            >
-              <SvgSearch width={14} />
-            </Link>
-          </div>
-        </div>
-
-        {/* criar o layout e dps mexer nessa questao de pesquisar, ele vai escrever o titulo e vai ser redirecionado com o escrito na url */}
+        {!isSearchPage && <InputSearch />}
       </nav>
-      <Outlet />
     </>
   );
 };

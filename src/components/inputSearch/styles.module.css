@@ -1,0 +1,56 @@
+.searchContainer {
+  margin-top: 5px;
+  display: block;
+}
+
+.searchInput {
+  height: 20px;
+  width: 400px;
+  margin-right: -10px;
+  padding-right: 30px;
+  outline: none;
+}
+
+.searchInput::-webkit-input-placeholder {
+  padding-left: 5px;
+}
+
+.searchInput:focus {
+  border: 1px solid #000000;
+  transition: 0.35s ease;
+}
+
+.searchInput:focus::-webkit-input-placeholder {
+  transition: opacity 0.45s ease;
+  opacity: 0;
+}
+
+.buttonSearch {
+  position: relative;
+  float: right;
+  left: -16px;
+}
+
+@media (max-width: 610px) {
+  .searchInput {
+    width: 200px;
+  }
+}
+
+@media (min-width: 610px) and (max-width: 1100px) {
+  .searchInput {
+    width: 200px;
+  }
+}
+
+@media (max-width: 575px) {
+  .searchInput {
+    width: 100px;
+  }
+}
+
+@media (max-width: 450px) {
+  .searchInput {
+    display: none;
+  }
+}

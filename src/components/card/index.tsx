@@ -2,9 +2,8 @@ import React from "react";
 import styles from "./styles.module.css";
 import Tags from "../tags";
 import { SvgArrow } from "../../assets/icons/SvgArrow";
-import img from "../../assets/images/headachenew.jpg";
 import SkeletonLoader from "./skeletonLoader";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 
 type cardProps = {
   title: string;
@@ -33,9 +32,9 @@ const Card: React.FC<cardProps> = ({
   }, [image]);
 
   return (
-    <>
+    <div style={{ width: "100%" }}>
       <Link
-        to={`article/${pathIdentification}`}
+        href={`article?id=${pathIdentification}`}
         style={{ textDecoration: "none", color: "inherit" }}
       >
         <div className={styles.cardContainer}>
@@ -60,7 +59,7 @@ const Card: React.FC<cardProps> = ({
           <Tags tags={tags} classNames={{ textSize: 12 }} />
         </div>
       </Link>
-    </>
+    </div>
   );
 };
 

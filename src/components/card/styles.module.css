@@ -5,12 +5,12 @@
   width: 100%;
   gap: 8px;
   transition: all 0.2s ease-out;
+}
 
-  &:hover {
-    cursor: pointer;
-    transition: all 0.2s ease-out;
-    transform: translateY(-5px);
-  }
+.cardContainer:hover {
+  cursor: pointer;
+  transition: all 0.2s ease-out;
+  transform: translateY(-5px);
 }
 
 .img {
