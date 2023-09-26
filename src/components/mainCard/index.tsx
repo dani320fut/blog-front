@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./styles.module.css";
 import Tags from "../tags";
 import SkeletonLoader from "./skeletonLoader";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 
 type mainCardProps = {
   title?: string;
@@ -37,7 +37,7 @@ const MainCard: React.FC<mainCardProps> = ({
       {!imageLoaded && <SkeletonLoader />}
       {imageLoaded && (
         <Link
-          to={`article/${pathIdentification}`}
+          href={`article?id=${pathIdentification}`}
           style={{ textDecoration: "none", color: "inherit" }}
         >
           <div

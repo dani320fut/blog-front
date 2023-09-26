@@ -1,0 +1,26 @@
+.main {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 25px;
+  padding-bottom: 100px;
+}
+
+.textContainer {
+  display: flex;
+  flex-direction: column;
+  font-size: 16px;
+  line-height: 2.5;
+  color: #4b4b4b;
+  text-align: justify;
+}
+
+.textAboutUs {
+  margin-top: 5px;
+}
+
+@media (max-width: 768px) {
+  .textContainer {
+    margin-left: -5px;
+  }
+}

@@ -1,0 +1,110 @@
+.main {
+  margin-top: 25px;
+  padding-bottom: 50px;
+}
+
+.cardsContainter {
+  margin-top: 30px;
+}
+
+.card {
+  margin: 25px 0 25px 0;
+}
+
+.searchContainer {
+  margin-top: 5px;
+  display: block;
+}
+
+.searchInput {
+  height: 20px;
+  width: 400px;
+  margin-right: -10px;
+  padding-right: 30px;
+  outline: none;
+}
+
+.searchInput::-webkit-input-placeholder {
+  padding-left: 5px;
+}
+
+.searchInput:focus {
+  border: 1px solid #000000;
+  transition: 0.35s ease;
+}
+
+.searchInput:focus::-webkit-input-placeholder {
+  transition: opacity 0.45s ease;
+  opacity: 0;
+}
+
+.resultText {
+  font-size: 16px;
+  font-weight: 550;
+}
+
+.buttonSearch {
+  position: relative;
+  float: right;
+  left: -16px;
+}
+
+.buttonSearch:hover {
+  cursor: pointer;
+}
+
+.paginationContainer {
+  padding-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.arrowContainer {
+  display: flex;
+  gap: 5px;
+}
+
+.arrowContainer:hover {
+  cursor: pointer;
+}
+
+.leftArrow {
+  rotate: 180deg;
+}
+
+.leftArrow:hover {
+  animation: spin 0.2s linear forwards;
+}
+
+.rightArrow {
+  padding-top: 3px;
+}
+
+.rightArrow:hover {
+  animation: spin 0.2s linear forwards;
+}
+
+.paginationText {
+  font-weight: 500;
+  color: #2b2d2e;
+}
+
+@keyframes spin {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(4px, 0);
+  }
+}
+
+@media (max-width: 525px) {
+  .searchContainer {
+    display: flex;
+    width: 100%;
+  }
+  .searchInput {
+    width: 100%;
+  }
+}

@@ -1,0 +1,42 @@
+.main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 80vh;
+  /* background-color: aqua; */
+  /* margin-top: 25px;
+  padding-bottom: 100px; */
+}
+
+.notFoundContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 100px;
+}
+
+.linkStyle {
+  align-self: start;
+  color: rgb(0, 0, 0);
+  font-weight: 550;
+  text-decoration: none;
+}
+
+.titleNotFound {
+  font-size: 100px;
+}
+
+.pageNotFound {
+  font-size: 40px;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  margin-top: -70px;
+}
+
+.notFoundText {
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  font-size: 16px;
+  margin-top: -10px;
+}

@@ -6,12 +6,12 @@
   background-size: cover;
   background-position: center;
   transition: all 0.2s ease-out;
+}
 
-  &:hover {
-    cursor: pointer;
-    transition: all 0.2s ease-out;
-    transform: translateY(-5px);
-  }
+.img:hover {
+  cursor: pointer;
+  transition: all 0.2s ease-out;
+  transform: translateY(-5px);
 }
 
 .textContainer {
