@@ -3,13 +3,10 @@
 import React from "react";
 import styles from "./styles.module.css";
 import MainCard from "../../components/mainCard";
-import Card from "../../components/card";
-import { articles } from "../../types/article";
-import { useFetch } from "../../hooks/useFetch";
-import { ENDPOINTS } from "../../constants";
 import SkeletonLoader from "./skeletonLoader";
 import { useSearchParams } from "next/navigation";
 import NotFound from "../notFound/page";
+import { useGetArticle } from "../../service/hooks";
 
 const TitleLoader: React.FC = () => {
   return (
@@ -42,32 +39,16 @@ const ArticleLoader: React.FC = () => {
 };
 
 const Article: React.FC = () => {
-  const [article, setArticle] = React.useState<articles | undefined>();
-  const [isLoading, setIsLoading] = React.useState<boolean>(true);
-
   const searchParams = useSearchParams();
   const path = searchParams.get("id");
-  console.log("🚀 ~ file: page.tsx:46 ~ path:", path);
 
-  const { data, error, loading } = useFetch(ENDPOINTS.ARTICLES_BY_PATH, {
-    path,
-  });
+  const { data, error, isLoading } = useGetArticle(path ?? "");
 
   React.useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
-  React.useEffect(() => {
-    if (data && data.length > 0) {
-      setArticle(
-        data?.find(({ pathIdentification }) => pathIdentification === path)
-      );
-
-      setIsLoading(false);
-    }
-  }, [data]);
-
-  if ((!loading && !article) || error)
+  if ((!isLoading && !data) || error)
     return (
       <div>
         <NotFound />
@@ -79,8 +60,8 @@ const Article: React.FC = () => {
       <header className={styles.titleContainer}>
         {!isLoading ? (
           <>
-            <h1 className={styles.title}>{article?.title}</h1>
-            <span className={styles.subtitle}>{article?.subtitle}</span>
+            <h1 className={styles.title}>{data?.title}</h1>
+            <span className={styles.subtitle}>{data?.subtitle}</span>
           </>
         ) : (
           <TitleLoader />
@@ -89,23 +70,23 @@ const Article: React.FC = () => {
 
       <div className={styles.img}>
         <MainCard
-          tags={article?.tags ?? []}
-          image={article?.image ?? ""}
+          tags={data?.tags ?? []}
+          image={data?.image ?? ""}
           onlyTags={true}
         />
       </div>
       {!isLoading ? (
         <article>
           <section className={styles.articleBody}>
-            <h2>What is {article?.name}?</h2>
-            <span className={styles.description}>{article?.description}</span>
+            <h2>What is {data?.name}?</h2>
+            <span className={styles.description}>{data?.description}</span>
           </section>
 
           <section className={styles.articleBody}>
-            <h2>Main symptoms of {article?.name}:</h2>
+            <h2>Main symptoms of {data?.name}:</h2>
             <ul className={styles.description}>
               <div style={{ marginTop: "-20px" }}>
-                {article?.symptoms?.map((symptom) => (
+                {data?.symptoms?.map((symptom) => (
                   <li key={symptom}>{symptom}</li>
                 ))}
               </div>
@@ -113,10 +94,10 @@ const Article: React.FC = () => {
           </section>
 
           <section className={styles.articleBody}>
-            <h2> Tips to help you with {article?.name}:</h2>
+            <h2> Tips to help you with {data?.name}:</h2>
             <ul className={styles.description}>
               <div style={{ marginTop: "-20px" }}>
-                {article?.tips?.map((tip) => (
+                {data?.tips?.map((tip) => (
                   <li key={tip}>{tip}</li>
                 ))}
               </div>
@@ -128,7 +109,7 @@ const Article: React.FC = () => {
             style={{ paddingBottom: "200px" }}
           >
             <h2>Affected area: </h2>
-            <span className={styles.description}>{article?.area}</span>
+            <span className={styles.description}>{data?.area}</span>
           </section>
         </article>
       ) : (
