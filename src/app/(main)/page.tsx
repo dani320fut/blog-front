@@ -5,11 +5,10 @@ import styles from "./styles.module.css";
 import MainCard from "../../components/mainCard";
 import Card from "../../components/card";
 import { articles } from "../../types/article";
-import { useFetch } from "../../hooks/useFetch";
-import { ENDPOINTS } from "../../constants";
 import { SvgArrow } from "../../assets/icons/SvgArrow";
 import Link from "next/link";
 import CardSkeletonLoader from "./cardSkeletonLoader";
+import { useGetAllArticle } from "../../service/hooks";
 
 const CardsSkeleton: React.FC = () => {
   return (
@@ -25,13 +24,10 @@ const Main: React.FC = () => {
   const [articles, setArticles] = React.useState<articles[]>([]);
   const [mainArticle, setMainArticle] = React.useState<articles | undefined>();
 
-  const { data, error, loading } = useFetch(ENDPOINTS.ALL_ARTICLES, {
-    pageSize: "7",
-  });
+  const { data, error, isLoading } = useGetAllArticle("7");
 
   React.useEffect(() => {
     if (data) {
-      console.log("🚀 ~ file: page.tsx:34 ~ React.useEffect ~ data:", data);
       setArticles(data?.filter((article: articles) => !article.isMainArticle));
       setMainArticle(data?.find((article: articles) => article.isMainArticle));
     }
@@ -61,10 +57,10 @@ const Main: React.FC = () => {
         </h2>
 
         <div className={styles.cards}>
-          {articles?.length > 0 && !loading ? (
+          {articles?.length > 0 && !isLoading ? (
             <>
               {articles?.map((card) => (
-                <Card {...card} />
+                <Card key={card.pathIdentification} {...card} />
               ))}
             </>
           ) : (

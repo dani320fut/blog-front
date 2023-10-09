@@ -1,16 +1,15 @@
 "use client";
 
 import React from "react";
-import axios from "axios";
 import styles from "./styles.module.css";
 import { articles } from "../../types/article";
-import { useFetchSearch } from "../../hooks/useFetch";
-import { ENDPOINTS } from "../../constants";
 import Card from "./fragments/card";
 import SvgSearch from "../../assets/icons/SvgSearch";
 import CardSkeletonLoader from "./fragments/card/cardSkeletonLoader";
 import { SvgRightArrow } from "../../assets/icons/SvgRightArrow";
 import { useSearchParams } from "next/navigation";
+import { useGetArticlesBySearch } from "../../service/hooks";
+import { getArticlesBySearch } from "../../service/fetch";
 
 const CardsLoader: React.FC = () => {
   return (
@@ -48,13 +47,11 @@ const SeachArticles: React.FC = () => {
 
   const searchRef = React.createRef<HTMLAnchorElement>();
 
-  const { data, error, loading } = useFetchSearch(
-    ENDPOINTS.ARTICLES_BY_SEARCH,
-    {
-      pageSize: "10",
-      search: searchParams.get("search"),
-    }
-  );
+  const {
+    data,
+    error,
+    isLoading = true,
+  } = useGetArticlesBySearch("10", searchParams.get("search") ?? "");
 
   React.useEffect(() => {
     const search = searchParams.get("search") ?? "";
@@ -86,18 +83,15 @@ const SeachArticles: React.FC = () => {
 
   const fetchSearchInput = async () => {
     setIsNewLoading(true);
-    const fullUrl = process.env.NEXT_PUBLIC_API_URL;
-    const response = await axios.get(fullUrl + ENDPOINTS.ARTICLES_BY_SEARCH, {
-      params: { search: searchInput, pageSize: "10" },
-    });
+    const response = await getArticlesBySearch("10", searchInput);
 
-    setAllArticles(response?.data?.articles);
-    setArticles(response?.data?.articles[0]);
-    setFoundedBySearch(response?.data?.foundedBySeach);
+    setAllArticles(response?.articles);
+    setArticles(response?.articles[0]);
+    setFoundedBySearch(response?.foundedBySeach);
     setLastSearch(searchInput);
     setPageObject({
       pageIndex: 0,
-      limit: response?.data?.articles?.length - 1,
+      limit: response?.articles?.length - 1,
     });
     setIsNewLoading(false);
   };
@@ -133,7 +127,7 @@ const SeachArticles: React.FC = () => {
           </div>
         </div>
       </div>
-      {!loading && !isNewLoading && lastSearch && (
+      {!isLoading && !isNewLoading && lastSearch && (
         <div
           style={{
             marginTop: "15px",
@@ -146,7 +140,7 @@ const SeachArticles: React.FC = () => {
         </div>
       )}
       <div className={styles.cardsContainter}>
-        {loading || isNewLoading ? (
+        {isLoading || isNewLoading ? (
           <CardsLoader />
         ) : (
           <>
