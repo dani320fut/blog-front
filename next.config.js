@@ -8,6 +8,7 @@ const nextConfig = {
   buildActivityPosition: "bottom-right",
   // reactStrictMode: true,
   // unoptimized: true
+  // teste
 };
 
 const withBundleAnalyzer = require("@next/bundle-analyzer")(nextConfig);
