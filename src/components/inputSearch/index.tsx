@@ -5,6 +5,7 @@ import SvgSearch from "../../assets/icons/SvgSearch";
 
 const InputSearch: React.FC = () => {
   const [searchText, setSearchText] = React.useState<string>("");
+  // eslint-disable-next-line no-undef
   const searchRef = React.createRef<HTMLAnchorElement>();
 
   const handleKeypress = (e: any) => {

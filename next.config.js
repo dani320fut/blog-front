@@ -6,9 +6,6 @@ const nextConfig = {
   },
   enabled: process.env.ANALYZE === "true",
   buildActivityPosition: "bottom-right",
-  // reactStrictMode: true,
-  // unoptimized: true
-  // teste
 };
 
 const withBundleAnalyzer = require("@next/bundle-analyzer")(nextConfig);

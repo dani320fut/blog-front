@@ -47,11 +47,10 @@ const SeachArticles: React.FC = () => {
 
   const searchRef = React.createRef<HTMLAnchorElement>();
 
-  const {
-    data,
-    error,
-    isLoading = true,
-  } = useGetArticlesBySearch("10", searchParams.get("search") ?? "");
+  const { data, isLoading = true } = useGetArticlesBySearch(
+    "10",
+    searchParams.get("search") ?? ""
+  );
 
   React.useEffect(() => {
     const search = searchParams.get("search") ?? "";
@@ -134,8 +133,8 @@ const SeachArticles: React.FC = () => {
           }}
         >
           <span className={styles.resultText}>
-            {foundedBySearch ? "Results of " : "No results found for "}"
-            {lastSearch}"
+            {foundedBySearch ? "Results of " : "No results found for "}
+            {lastSearch}
           </span>
         </div>
       )}

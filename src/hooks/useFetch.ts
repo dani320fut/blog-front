@@ -3,7 +3,7 @@ import axios from "axios";
 
 export const useFetch = (url: string, params?: object) => {
   const [data, setData] = useState<[] | null>(null);
-  const [error, setError] = useState<any>(null);
+  const [error, setError] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
@@ -17,7 +17,7 @@ export const useFetch = (url: string, params?: object) => {
         );
         setData(response?.data);
       } catch (err) {
-        setError(err);
+        setError(true);
       } finally {
         setLoading(false);
       }
@@ -35,7 +35,7 @@ export const useFetchSearch = (url: string, params?: object) => {
     articles: [];
     foundedBySeach: boolean;
   } | null>(null);
-  const [error, setError] = useState<any>(null);
+  const [error, setError] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
@@ -50,7 +50,7 @@ export const useFetchSearch = (url: string, params?: object) => {
         );
         setData(response?.data);
       } catch (err) {
-        setError(err);
+        setError(true);
       } finally {
         setLoading(false);
       }

@@ -24,7 +24,7 @@ const Main: React.FC = () => {
   const [articles, setArticles] = React.useState<articles[]>([]);
   const [mainArticle, setMainArticle] = React.useState<articles | undefined>();
 
-  const { data, error, isLoading } = useGetAllArticle("7");
+  const { data, isLoading } = useGetAllArticle("7");
 
   React.useEffect(() => {
     if (data) {
